@@ -29,19 +29,22 @@ public class hangman {
 
         // initialize HashSet
         guessedLetters = new HashSet<>();
+        while (true) {
 
-        displaymenu();
-        choice = sc.nextInt();
-        switch (choice){
-            case 1 :
-                play();
-                break;
-            case 2 :
-                rules();
-                break;
-            case 3 :
-                System.out.println("Exiting goodbye");
-                return;
+
+            displaymenu();
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    play();
+                    break;
+                case 2:
+                    rules();
+                    break;
+                case 3:
+                    System.out.println("Exiting goodbye");
+                    return;
+            }
         }
     }
 
@@ -67,6 +70,12 @@ public class hangman {
         System.out.println("-------------------");
         System.out.println("Good luck!\n");
 
+    }
+
+    public void play(){
+        char letter;
+        System.out.println("Guess letter:");
+        letter = sc.next
     }
     //to test
     public String toString(){
