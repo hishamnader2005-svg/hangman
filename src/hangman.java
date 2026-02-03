@@ -13,6 +13,7 @@ public class hangman {
         "random",
     };
     Random randword = new Random();
+
     public hangman(int lives , int faults ){
         this.lives = lives;
         this.faults = faults;
