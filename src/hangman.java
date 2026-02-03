@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.HashSet;
 import java.util.Random;
 
-public class Hangman {
+public class hangman {
 
     public int lives;
     public int faults;
@@ -18,7 +18,7 @@ public class Hangman {
 
     Random randword = new Random();
 
-    public Hangman(int lives, int faults) {
+    public hangman(int lives, int faults) {
         this.lives = lives;
         this.faults = faults;
 
@@ -28,4 +28,10 @@ public class Hangman {
         // initialize HashSet
         guessedLetters = new HashSet<>();
     }
+
+    //to test
+    public String toString(){
+        return secretWord;
+    }
 }
+
