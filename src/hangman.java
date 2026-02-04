@@ -4,8 +4,7 @@ import java.util.Random;
 
 public class hangman {
 
-    public int lives;
-    public int faults;
+
 
 
     String secretWord;
@@ -17,25 +16,25 @@ public class hangman {
             "random"
     };
 
-    Random randword = new Random();
+
     private static  Scanner sc = new Scanner(System.in);
     int choice;
 
-    public hangman(int lives, int faults) {
-        this.lives = lives;
-        this.faults = faults;
+    public hangman() {
+
 
 
         // pick random word
-        secretWord = words[randword.nextInt(words.length)];
+
 
         // initialize HashSet
-        guessedLetters = new ArrayList<>();
+
         while (true) {
 
 
             displaymenu();
             choice = sc.nextInt();
+            sc.nextLine();
             switch (choice) {
                 case 1:
                     play();
@@ -75,11 +74,26 @@ public class hangman {
     }
 
     public void play() {
-
-        int correct=0;
+        Random randword = new Random();
+        secretWord = words[randword.nextInt(words.length)];
+        guessedLetters = new ArrayList<>();
+        int lives=5;
+        int faults=0;
+        int correct=-1;
+        //varibale to contain spaces
+        char[] progress = new char[secretWord.length()];
         System.out.println("The number of letters is :" + secretWord.length());
+        for (int i = 0 ; i< progress.length ; i++){
+            progress[i]= '-';
+        }
+
+
         //while loop
         while (true) {
+            System.out.println("Lives: "+lives);
+            boolean won = true;
+            System.out.println(progress);
+
             System.out.print("Guess a letter: ");
             String input = sc.nextLine();
 
@@ -105,6 +119,9 @@ public class hangman {
                     correctGuess = true;
                     correct++;
                 }
+                if (secretWord.charAt(i)==letter){
+                    progress[i]=letter;
+                }
 
             }
 
@@ -119,7 +136,13 @@ public class hangman {
             }
             new art(faults);
 
-            if (correct==secretWord.length()){
+            for (int i = 0; i<secretWord.length();i++){
+
+                if (progress[i]=='-'){
+                    won=false;
+                }
+            }
+            if (won){
                 System.out.println("You won!!");
                 return;
             }
