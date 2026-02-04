@@ -7,6 +7,7 @@ public class hangman {
     public int lives;
     public int faults;
 
+
     String secretWord;
     ArrayList<Character> guessedLetters;
 
@@ -75,7 +76,7 @@ public class hangman {
 
     public void play() {
 
-
+        int correct=0;
         System.out.println("The number of letters is :" + secretWord.length());
         //while loop
         while (true) {
@@ -102,6 +103,7 @@ public class hangman {
             for (int i = 0; i < secretWord.length(); i++) {
                 if (secretWord.charAt(i) == letter) {
                     correctGuess = true;
+                    correct++;
                 }
 
             }
@@ -117,6 +119,10 @@ public class hangman {
             }
             new art(faults);
 
+            if (correct==secretWord.length()){
+                System.out.println("You won!!");
+                return;
+            }
             if (lives ==-1){
                 System.out.println("Game over!! The word was " + toString());
                 return;
