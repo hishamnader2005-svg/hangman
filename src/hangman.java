@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class hangman {
@@ -8,7 +8,7 @@ public class hangman {
     public int faults;
 
     String secretWord;
-    HashSet<Character> guessedLetters;
+    ArrayList<Character> guessedLetters;
 
     String[] words = {
             "java",
@@ -17,7 +17,7 @@ public class hangman {
     };
 
     Random randword = new Random();
-    private static Scanner sc = new Scanner(System.in);
+    private static  Scanner sc = new Scanner(System.in);
     int choice;
 
     public hangman(int lives, int faults) {
@@ -28,7 +28,7 @@ public class hangman {
         secretWord = words[randword.nextInt(words.length)];
 
         // initialize HashSet
-        guessedLetters = new HashSet<>();
+        guessedLetters = new ArrayList<>();
         while (true) {
 
 
@@ -72,11 +72,27 @@ public class hangman {
 
     }
 
-    public void play(){
-        char letter;
-        System.out.println("Guess letter:");
-        letter = sc.next
+    public void play() {
+    int i;
+        for ( i = 0 ; i <secretWord.length(); i++){
+
+        }
+        System.out.println("Number of letters to guess is " + i);
+        //while loop
+        while (true) {
+            System.out.print("Guess a letter: ");
+            String input = sc.nextLine();
+
+            if (input.isEmpty()) {
+                System.out.println("Please enter a letter.");
+                continue;//to go baclk in the loop
+            }
+
+            char letter = input.charAt(0);
+            System.out.println("You guessed: " + letter);
+        }//end while loop
     }
+
     //to test
     public String toString(){
         return secretWord;
