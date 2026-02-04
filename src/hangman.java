@@ -85,11 +85,12 @@ public class hangman {
 
             if (input.isEmpty()) {
                 System.out.println("Please enter a letter.");
-                continue;//to go baclk in the loop
+                continue;//to go back to  the start of loop
             }
 
             char letter = input.charAt(0);
             System.out.println("You guessed: " + letter);
+            new art(faults);
         }//end while loop
     }
 
