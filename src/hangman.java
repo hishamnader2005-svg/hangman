@@ -6,7 +6,7 @@ public class hangman {
 
     public int lives;
     public int faults;
-
+    public int check;
     String secretWord;
     ArrayList<Character> guessedLetters;
 
@@ -20,9 +20,10 @@ public class hangman {
     private static  Scanner sc = new Scanner(System.in);
     int choice;
 
-    public hangman(int lives, int faults) {
+    public hangman(int lives, int faults, int check) {
         this.lives = lives;
         this.faults = faults;
+        this.check = check;
 
         // pick random word
         secretWord = words[randword.nextInt(words.length)];
@@ -74,10 +75,8 @@ public class hangman {
 
     public void play() {
     int i;
-        for ( i = 0 ; i <secretWord.length(); i++){
 
-        }
-        System.out.println("Number of letters to guess is " + i);
+        System.out.println("The number of letters is :" + secretWord.length());
         //while loop
         while (true) {
             System.out.print("Guess a letter: ");
@@ -86,6 +85,20 @@ public class hangman {
             if (input.isEmpty()) {
                 System.out.println("Please enter a letter.");
                 continue;//to go back to  the start of loop
+            }
+            if (guessedLetters.contains(input)) {
+                System.out.println("You already guessed that letter!");
+                continue;
+            }
+
+            guessedLetters.add(input);
+
+            boolean correctGuess = false;
+
+            for (int i = 0; i < secretWord.length(); i++) {
+                if (secretWord.charAt(i) == input) {
+                    correctGuess = true;
+                }
             }
 
             char letter = input.charAt(0);
