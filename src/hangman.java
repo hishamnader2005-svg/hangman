@@ -6,7 +6,7 @@ public class hangman {
 
     public int lives;
     public int faults;
-    public int check;
+
     String secretWord;
     ArrayList<Character> guessedLetters;
 
@@ -20,10 +20,10 @@ public class hangman {
     private static  Scanner sc = new Scanner(System.in);
     int choice;
 
-    public hangman(int lives, int faults, int check) {
+    public hangman(int lives, int faults) {
         this.lives = lives;
         this.faults = faults;
-        this.check = check;
+
 
         // pick random word
         secretWord = words[randword.nextInt(words.length)];
@@ -74,7 +74,7 @@ public class hangman {
     }
 
     public void play() {
-    int i;
+
 
         System.out.println("The number of letters is :" + secretWord.length());
         //while loop
@@ -86,24 +86,41 @@ public class hangman {
                 System.out.println("Please enter a letter.");
                 continue;//to go back to  the start of loop
             }
-            if (guessedLetters.contains(input)) {
+
+
+            char letter = input.charAt(0);
+            System.out.println("You guessed: " + letter);
+            if (guessedLetters.contains(letter)) {
                 System.out.println("You already guessed that letter!");
                 continue;
             }
 
-            guessedLetters.add(input);
+            guessedLetters.add(letter);
 
             boolean correctGuess = false;
 
             for (int i = 0; i < secretWord.length(); i++) {
-                if (secretWord.charAt(i) == input) {
+                if (secretWord.charAt(i) == letter) {
                     correctGuess = true;
                 }
+
             }
 
-            char letter = input.charAt(0);
-            System.out.println("You guessed: " + letter);
+            if (correctGuess){
+                System.out.println("The letter "+ letter +" is correct!!");
+            }
+            //check if correct guess is right or wrong
+            if (!correctGuess){
+                System.out.println("The letter "+ letter + " is incorrect");
+                faults++;
+                lives--;
+            }
             new art(faults);
+
+            if (lives ==-1){
+                System.out.println("Game over!! The word was " + toString());
+                return;
+            }
         }//end while loop
     }
 
